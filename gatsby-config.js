@@ -11,18 +11,30 @@ module.exports = {
       "brian holt",
       "frontend masters",
       "docker",
-      "nodejs"
-    ]
+      "nodejs",
+    ],
   },
   pathPrefix: "/complete-intro-to-containers",
   plugins: [
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        // Available options and their defaults:
+        base64Width: 20,
+        forceBase64Format: ``, // valid formats: png,jpg,webp
+        useMozJpeg: process.env.GATSBY_JPEG_ENCODER === `MOZJPEG`,
+        stripMetadata: true,
+        defaultQuality: 50,
+        failOnError: true,
+      },
+    },
     `gatsby-plugin-layout`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/lessons`,
-        name: "markdown-pages"
-      }
+        name: "markdown-pages",
+      },
     },
     `gatsby-plugin-react-helmet`,
     {
@@ -37,11 +49,11 @@ module.exports = {
             options: {
               maxWidth: 800,
               linkImagesToOriginal: true,
-              sizeByPixelDensity: false
-            }
-          }
-        ]
-      }
-    }
-  ]
+              sizeByPixelDensity: false,
+            },
+          },
+        ],
+      },
+    },
+  ],
 };
